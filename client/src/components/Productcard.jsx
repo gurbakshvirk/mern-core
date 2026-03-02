@@ -1,33 +1,35 @@
 import React from 'react'
 
-const Productcard = ({ product, setproduct }) => {
+const Productcard = ({ product, setproduct, removeproduct }) => {
 
   const increaseqty = (e) => {
     const newarray = product.map((evt) => {
       if (evt.id === e) {
-        return {...evt,qty: evt.qty + 1}
+        return { ...evt, qty: evt.qty + 1 }
       } else {
         return evt
       }
     })
     setproduct(newarray)
   }
-  
   const deccreaseqty = (e) => {
     const newarray = product.map((evt) => {
-      if (evt.id === e) {
-        return {...evt,qty: evt.qty - 1}
-      } else {
+      if (evt.id === e && evt.qty > 1) {
+  return { ...evt, qty: evt.qty - 1 }
+}
+      else {
         return evt
       }
     })
+
     setproduct(newarray)
   }
 
   return (
-    <div>
+    <div className='wrapper'>
       {product.map((e) => (
-        <div key={e.id}>
+
+        <div key={e.id} className='glass-card'>
           <h1 >{e.name}</h1>
           <h3>{e.id}</h3>
           <h3>{e.price}</h3>
@@ -35,6 +37,8 @@ const Productcard = ({ product, setproduct }) => {
             <button onClick={() => deccreaseqty(e.id)}>-</button>
             <h3>{e.qty}</h3>
             <button onClick={() => increaseqty(e.id)}>+</button>
+
+            <button onClick={() => removeproduct(e.id)}>❌</button>
           </div>
         </div>
       ))}
