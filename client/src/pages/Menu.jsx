@@ -26,8 +26,6 @@ const Menu = () => {
     useEffect(() => {
         localStorage.setItem('products', JSON.stringify(product))
     }, [product])
-
-
     // const removeproduct = () => {
     //     const newProductArray = product.filter((item) => item.qty > 0)
     //     setproduct(newProductArray)
@@ -36,11 +34,8 @@ const Menu = () => {
         const newProductArray = product.filter(item => item.id !== id)
         setproduct(newProductArray)
     }
-
-
     const itemsqtytotal = product.reduce((acc, curr) => { return acc + curr.qty }, 0)
     console.log(itemsqtytotal)
-
     const pricetotal = product.reduce((acc, curr) => { return acc + curr.qty * curr.price }, 0)
     console.log(pricetotal)
     return (
